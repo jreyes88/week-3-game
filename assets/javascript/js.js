@@ -2,6 +2,8 @@ var computerGuess = "";
 var concealedWord = "";
 var guessesRemaining = 15;
 var guess;
+var wins = 0;
+var victory = 0;
 
 var hangman = {
 
@@ -23,22 +25,29 @@ var hangman = {
 
 	wordGuessing: function() {
 		if (computerGuess.indexOf(guess) !== -1) {
-			console.log(computerGuess + guess);
-			console.log("Contains This Letter");
+			//console.log(computerGuess + guess);
+			//console.log("Contains This Letter");
 		} else {
 			guessesRemaining -= 1;
-			document.querySelector("#stats").innerHTML = "<p>Guesses Remaining: </p>" + guessesRemaining;
-			console.log("Does Not Contain This Letter " + guessesRemaining);
+			document.querySelector("#guessStats").innerHTML = "<p>Guesses Remaining: </p>" + guessesRemaining;
+			//console.log("Does Not Contain This Letter " + guessesRemaining);
 		}
 	},
 
 	updateWord: function() {
 		for (var i = 0; i < computerGuess.length; i++) {
 			if (guess === computerGuess[i]) {
-				console.log(computerGuess[i] + i + "okay");
+				//console.log(computerGuess[i] + i + "okay");
 				var par = document.getElementsByClassName('underScore');
 				par[i].innerHTML = guess;
-				console.log(par[i]);
+				//console.log(par[i]);
+				victory++;
+				if (victory === computerGuess.length) {
+					wins++;
+					document.querySelector("#winStats").innerHTML = "<p>Wins: </p>" + wins;
+				}
+				console.log(victory);
+				console.log(wins);
 			}
 		}
 	}
