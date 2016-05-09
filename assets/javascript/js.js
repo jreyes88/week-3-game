@@ -39,6 +39,17 @@ var hangman = {
 			//console.log("Does Not Contain This Letter " + guessesRemaining);
 			if (guessesRemaining === 0) {
 				alert("You Lose!");
+				concealedWord = "";
+				var randomNumber = [Math.floor(Math.random() * 10)];
+				computerGuess = this.words[randomNumber];
+				for (i = 0; i < computerGuess.length; i++) {
+					concealedWord += "<p class='underScore'>_</p>";
+					document.querySelector("#currentWord").innerHTML = concealedWord;
+					//console.log(concealedWord);
+				};
+				guessesRemaining = 15;
+				lettersGuessed = "";
+				this.updateHTML();
 			}
 		}
 	},
@@ -60,6 +71,7 @@ var hangman = {
 	bigWin: function() {
 		if (victory === computerGuess.length) {
 			alert("You Win!");
+			concealedWord = "";
 			var randomNumber = [Math.floor(Math.random() * 10)];
 			computerGuess = this.words[randomNumber];
 			for (i = 0; i < computerGuess.length; i++) {
@@ -67,7 +79,10 @@ var hangman = {
 				document.querySelector("#currentWord").innerHTML = concealedWord;
 				//console.log(concealedWord);
 			};
+			wins+=1;
 			guessesRemaining = 15;
+			lettersGuessed = "";
+			this.updateHTML();
 		}
 	}
 }
