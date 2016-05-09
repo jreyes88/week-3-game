@@ -4,15 +4,21 @@ var guessesRemaining = 15;
 var guess;
 var wins = 0;
 var victory = 0;
+var lettersGuessed = "";
 
 var hangman = {
 
-	words: ["all american slam", "the grand slamwich", "belgian waffle slam", "lumberjack slam", "french toast slam", "fit slam", "grand slam slugger", "red white and blue slam", "four dollar everyday value slam", "honey jalapeno bacon slam"],
-	
+	words: ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"],
+
+	updateHTML: function() {
+		var html = "<p>Wins: </p>" + wins + "<p>Guesses Remaining: </p>" + guessesRemaining + "<p>Letters Guessed: </p>" + lettersGuessed;
+		document.querySelector("#stats").innerHTML = html;
+	},
+
 	wordSelect: function() {
 		var randomNumber = [Math.floor(Math.random() * 10)];
 		computerGuess = this.words[randomNumber];
-		console.log(computerGuess);
+		//console.log(computerGuess);
 	},
 
 	clueWord: function() {
@@ -29,8 +35,11 @@ var hangman = {
 			//console.log("Contains This Letter");
 		} else {
 			guessesRemaining -= 1;
-			document.querySelector("#guessStats").innerHTML = "<p>Guesses Remaining: </p>" + guessesRemaining;
+			lettersGuessed += guess;
 			//console.log("Does Not Contain This Letter " + guessesRemaining);
+			if (guessesRemaining === 0) {
+				alert("You Lose!");
+			}
 		}
 	},
 
@@ -42,26 +51,38 @@ var hangman = {
 				par[i].innerHTML = guess;
 				//console.log(par[i]);
 				victory++;
-				if (victory === computerGuess.length) {
-					wins++;
-					document.querySelector("#winStats").innerHTML = "<p>Wins: </p>" + wins;
-				}
 				console.log(victory);
-				console.log(wins);
+				console.log(computerGuess.length);
+				//console.log(wins);
 			}
 		}
+	},
+	bigWin: function() {
+		if (victory === computerGuess.length) {
+			alert("You Win!");
+			var randomNumber = [Math.floor(Math.random() * 10)];
+			computerGuess = this.words[randomNumber];
+			for (i = 0; i < computerGuess.length; i++) {
+				concealedWord += "<p class='underScore'>_</p>";
+				document.querySelector("#currentWord").innerHTML = concealedWord;
+				//console.log(concealedWord);
+			};
+			guessesRemaining = 15;
+		}
 	}
-
 }
 
 hangman.wordSelect();
 hangman.clueWord();
+hangman.updateHTML();
 
 document.onkeyup = function(event) {
 	guess = String.fromCharCode(event.keyCode).toLowerCase();
-	console.log(guess);
+	//console.log(guess);
 	hangman.wordGuessing();
 	hangman.updateWord();
+	hangman.updateHTML();
+	hangman.bigWin();
 }
 
 
