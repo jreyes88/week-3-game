@@ -32,7 +32,6 @@ var hangman = {
 
 	wordGuessing: function() {
 		if (computerGuess.indexOf(guess) !== -1) {
-			correctLetters = guess + correctLetters;
 			//console.log(correctLetters);
 			//console.log(computerGuess + guess);
 			//console.log("Contains This Letter");
@@ -49,6 +48,7 @@ var hangman = {
 				//console.log(computerGuess[i] + i + "okay");
 				var par = document.getElementsByClassName('underScore');
 				par[i].innerHTML = guess;
+				correctLetters = guess + correctLetters;
 				//console.log(computerGuess.length);
 				//console.log(wins);
 				//console.log(concealedWord);
@@ -59,7 +59,8 @@ var hangman = {
 	scoring: function() {
 		var pos = correctLetters.indexOf(guess);
 			if (pos >= 1) {
-				victory ++;
+				victory == victory + 1;
+				console.log(victory);
 			}
 	},
 
@@ -97,8 +98,6 @@ var hangman = {
 hangman.initialHTML();
 hangman.wordSelect();
 hangman.clueWord();
-
-console.log(victory);
 
 document.onkeyup = function(event) {
 	guess = String.fromCharCode(event.keyCode).toLowerCase();
