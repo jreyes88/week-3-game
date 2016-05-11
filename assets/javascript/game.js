@@ -50,9 +50,9 @@ var hangman = {
 				par[i].innerHTML = guess;
 				victory ++;
 				correctLetters = guess + correctLetters;
-				console.log(correctLetters);
+				// console.log(correctLetters); I HATE THIS
 				// if (correctLetters.indexOf(guess) !== -1) {
-				// 	return;
+				// return;
 				// }
 				// var pos = correctLetters.indexOf(guess);
 				// console.log(pos);
@@ -88,7 +88,7 @@ var hangman = {
 
 	bigWin: function() {
 		if (victory === computerGuess.length) {
-			alert("<strike>You Win!</strike><br>no one ever wins");
+			alert("you win. no one ever wins");
 			wins += 1;
 			this.resetHTML();
 		}

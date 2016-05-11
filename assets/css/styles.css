@@ -1,3 +1,9 @@
 .underScore {
 	display: inline-block;
 }
+
+body {
+	background-image: url("../images/background.jpg");
+	background-size: 200%;
+	background-repeat: no-repeat;
+}
