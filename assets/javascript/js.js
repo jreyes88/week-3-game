@@ -3,8 +3,9 @@ var concealedWord = "";
 var guessesRemaining = 15;
 var guess;
 var wins = 0;
-var victory = "";
+var victory = 0;
 var lettersGuessed = "";
+var correctLetters = "";
 
 var hangman = {
 
@@ -31,6 +32,8 @@ var hangman = {
 
 	wordGuessing: function() {
 		if (computerGuess.indexOf(guess) !== -1) {
+			correctLetters = guess + correctLetters;
+			//console.log(correctLetters);
 			//console.log(computerGuess + guess);
 			//console.log("Contains This Letter");
 		} else {
@@ -49,14 +52,15 @@ var hangman = {
 				//console.log(computerGuess.length);
 				//console.log(wins);
 				//console.log(concealedWord);
-            	victory = victory + guess;
-        		console.log(victory);
-        		for (var j = 0; j < victory.length; j++) {
-        			if (victory[i] === guess) {
-        				victory !== victory + guess};
-        		};
 			}
 		}
+	},
+
+	scoring: function() {
+		var pos = correctLetters.indexOf(guess);
+			if (pos >= 1) {
+				victory ++;
+			}
 	},
 
 	updateHTML: function() {
@@ -72,7 +76,6 @@ var hangman = {
 		concealedWord = [];
 		this.wordSelect();
 		this.clueWord();
-		victory = [];
 	},
 
 	bigLose: function() {
@@ -83,7 +86,7 @@ var hangman = {
 	},
 
 	bigWin: function() {
-		if (victory.length === computerGuess.length) {
+		if (victory === computerGuess.length) {
 			alert("You Win!");
 			wins += 1;
 			this.resetHTML();
@@ -95,11 +98,14 @@ hangman.initialHTML();
 hangman.wordSelect();
 hangman.clueWord();
 
+console.log(victory);
+
 document.onkeyup = function(event) {
 	guess = String.fromCharCode(event.keyCode).toLowerCase();
 	//console.log(guess);
 	hangman.wordGuessing();
 	hangman.updateWord();
+	hangman.scoring();
 	hangman.bigLose();
 	hangman.bigWin();
 	hangman.updateHTML();
