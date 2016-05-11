@@ -49,6 +49,9 @@ var hangman = {
 				var par = document.getElementsByClassName('underScore');
 				par[i].innerHTML = guess;
 				correctLetters = guess + correctLetters;
+				console.log(correctLetters);
+				var pos = correctLetters.indexOf(guess);
+				console.log(pos);
 				//console.log(computerGuess.length);
 				//console.log(wins);
 				//console.log(concealedWord);
@@ -56,13 +59,14 @@ var hangman = {
 		}
 	},
 
-	scoring: function() {
-		var pos = correctLetters.indexOf(guess);
-			if (pos >= 1) {
-				victory == victory + 1;
-				console.log(victory);
-			}
-	},
+	// scoring: function() {
+	// 	var pos = correctLetters.indexOf(guess);
+	// 	console.log(pos);
+	// 		if (pos >= 1) {
+	// 			victory == victory + 1;
+	// 			console.log(victory);
+	// 		}
+	// },
 
 	updateHTML: function() {
 		guessesRemaining: 15;
@@ -104,7 +108,7 @@ document.onkeyup = function(event) {
 	//console.log(guess);
 	hangman.wordGuessing();
 	hangman.updateWord();
-	hangman.scoring();
+	//hangman.scoring();
 	hangman.bigLose();
 	hangman.bigWin();
 	hangman.updateHTML();
