@@ -9,7 +9,7 @@ var correctLetters = "";
 
 var hangman = {
 
-	words: ["whatever", "nothing", "bleak", "pointless", "death", "ehhhhh", "again", "trying", "failing", "wasteful", "nobody"],
+	words: ["nissan", "toyota", "ford", "chevrolet", "mazda", "hyundai", "infiniti", "acura", "jeep", "lexus", "mclaren"],
 
 	initialHTML: function() {
 		var html = "<p>Wins: </p>" + wins + "<p>Guesses Remaining: </p>" + guessesRemaining + "<p>Letters Guessed: </p>" + lettersGuessed;
@@ -81,14 +81,14 @@ var hangman = {
 
 	bigLose: function() {
 		if (guessesRemaining === 0) {
-			alert("it shouldn't come as any surprise that you did not succeed at something this simple");
+			alert("you lose, airbags deployed :(");
 			this.resetHTML();	
 		}
 	},
 
 	bigWin: function() {
 		if (victory === computerGuess.length) {
-			alert("you win. no one ever wins");
+			alert("you win! good job! you get a new car");
 			wins += 1;
 			this.resetHTML();
 		}
