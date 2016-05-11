@@ -32,7 +32,6 @@ var hangman = {
 
 	wordGuessing: function() {
 		if (computerGuess.indexOf(guess) !== -1) {
-			//console.log(correctLetters);
 			//console.log(computerGuess + guess);
 			//console.log("Contains This Letter");
 		} else {
@@ -49,13 +48,6 @@ var hangman = {
 				var par = document.getElementsByClassName('underScore');
 				par[i].innerHTML = guess;
 				victory ++;
-				correctLetters = guess + correctLetters;
-				// console.log(correctLetters); I HATE THIS
-				// if (correctLetters.indexOf(guess) !== -1) {
-				// return;
-				// }
-				// var pos = correctLetters.indexOf(guess);
-				// console.log(pos);
 				//console.log(computerGuess.length);
 				//console.log(wins);
 				//console.log(concealedWord);
@@ -104,7 +96,6 @@ document.onkeyup = function(event) {
 	//console.log(guess);
 	hangman.wordGuessing();
 	hangman.updateWord();
-	//hangman.scoring();
 	hangman.bigLose();
 	hangman.bigWin();
 	hangman.updateHTML();
